@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="da" style="font-size: 100%">
+<head>
+	<title>fcoo.dk - fcoo-number - Demo</title>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta http-equiv='x-dns-prefetch-control' content='on'>
+
+	<meta name='copyright' content='FCOO'>
+	<meta name='owner' content='FCOO'>
+
+<!-- 
+    <link  href="bower_components.css" rel="stylesheet">	
+    <link  href="../src/fcoo-number.css" rel="stylesheet">	
+ -->
+ 
+</head>
+
+<body>
+	<script src="bower_components.js"></script>
+	<script src="../src/fcoo-number.js"></script>
+	<script>
+        function writeText( text ){
+            $('<p><code>'+text+'</code></p>').appendTo( 'body' );
+        }
+        function writeFormat( format, text ){
+            var p = $('<p></p>').appendTo( 'body' );
+            if (text)
+              p.html( text + '<br>' );
+            p.append('<code>myNumeral.format("' + format + '") => "' + myNumeral.format(format) + '"</code>'); 
+        }
+
+		function display(functionStr){
+			var func = new Function('return '+functionStr),
+				funcReturn = func(),
+				funcReturnAsString = funcReturn;
+			if (typeof funcReturn == 'string')
+			  funcReturnAsString = '"' + funcReturnAsString + '"';
+            
+            $('body').append('<p><code>'+functionStr+' => ' + funcReturnAsString + '</code></p>');
+        }
+
+        writeText('var myNumeral = numeral(1000.1239999);');
+        var myNumeral = numeral(1000.1239999);
+
+        writeFormat('0,0.0000', 'Thousand separator and 4 decimals');
+        writeFormat('0.0a', 'k with 1 decimal');
+        writeFormat('0.0000a', 'k with 4 decimal');
+
+        writeText('myNumeral = numeral(-1000.123);');
+        myNumeral = numeral(-1000.123);
+        writeFormat('0,0.0000', 'Thousand separator and 4 decimals');
+
+        writeText('myNumeral = numeral(1234.123);');
+        myNumeral = numeral(1234.123);
+        writeFormat('0,0.0km', 'In km');
+
+        display('numeral("12km").value()');
+        
+        writeFormat('0,0.0nm', 'In nm');
+
+        display('numeral("12nm").value()');
+        
+        writeText('myNumeral = numeral(12345678901234.123);');
+        myNumeral = numeral(12345678901234.123);
+
+        writeFormat('0.0000 a', 'k/m/t with 4 decimal');
+
+        writeFormat('0,0.0000a', 'Thousand separator and 4 decimals');
+
+
+
+    </script>
+</body>
+</html>

@@ -40,8 +40,20 @@
             $('body').append('<p><code>'+functionStr+' => ' + funcReturnAsString + '</code></p>');
         }
 
+
+        writeText("window.fcoo.settings.set('number', 'SPACE_COMMA' );");
+        window.fcoo.events.on('latlngformatchanged', function(id, value){ alert(id+' '+value); });
+        window.fcoo.settings.set('number', 'SPACE_COMMA' );
+
+
+        writeText('var myNumeral = numeral(1000);');
+        var myNumeral = numeral(1000);
+
+        writeFormat('0,0[.]000', 'Thousand separator and optional 3 decimals');
+
         writeText('var myNumeral = numeral(1000.1239999);');
-        var myNumeral = numeral(1000.1239999);
+        myNumeral = numeral(1000.1239999);
+
 
         writeFormat('0,0.0000', 'Thousand separator and 4 decimals');
         writeFormat('0.0a', 'k with 1 decimal');
@@ -67,8 +79,6 @@
         writeFormat('0.0000 a', 'k/m/t with 4 decimal');
 
         writeFormat('0,0.0000a', 'Thousand separator and 4 decimals');
-
-
 
     </script>
 </body>

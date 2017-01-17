@@ -1,6 +1,6 @@
 {
   "name": "fcoo-number",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "homepage": "https://github.com/FCOO/fcoo-number",
   "authors": [
     "NielsHolt"
@@ -14,15 +14,10 @@
     "url": "git://github.com/FCOO/fcoo-number.git"
   },
   "dependencies": {
-    "jquery": "latest",
     "numeral": "adamwdraper/Numeral-js#^2.0.4",
     "fcoo-settings": "fcoo/fcoo-settings#^1.1.4"
   },
-  "devDependencies": {
-    "bourbon": "latest",
-    "modernizr-mixin": "latest",
-    "mathsass": "latest"
-  },
+  "devDependencies": {},
   "license": "MIT",
   "ignore": [
     "**/.*",

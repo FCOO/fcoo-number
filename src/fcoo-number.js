@@ -18,17 +18,17 @@
     //Options for the 6 posible formats. Placed in seperate namespace
 
     var NumeralJsDelimiters = ns.NumeralJsDelimiters = {
-       NONE_DOT   : { thousands: '',  decimal: '.', example:'1000.123'  },
-       NONE_COMMA : { thousands: '',  decimal: ',', example:'1000,123'  },
+            NONE_DOT   : { thousands: '',  decimal: '.', example:'1000.123'  },
+            NONE_COMMA : { thousands: '',  decimal: ',', example:'1000,123'  },
 
-       SPACE_DOT  : { thousands: ' ', decimal: '.', example:'1 000.123'  },
-       SPACE_COMMA: { thousands: ' ', decimal: ',', example:'1 000,123'  },
+            SPACE_DOT  : { thousands: ' ', decimal: '.', example:'1 000.123'  },
+            SPACE_COMMA: { thousands: ' ', decimal: ',', example:'1 000,123'  },
 
-       COMMA_DOT  : { thousands: ',', decimal: '.', example:'1,000.123' },
-       DOT_COMMA  : { thousands: '.', decimal: ',', example:'1.000,123' },
-    },
+            COMMA_DOT  : { thousands: ',', decimal: '.', example:'1,000.123' },
+            DOT_COMMA  : { thousands: '.', decimal: ',', example:'1.000,123' },
+        },
 
-    //Determinate the default decimal separator
+        //Determinate the default decimal separator
         n = 1.1,
         s = n.toLocaleString(),
         defaultDelimiters = s.indexOf(',') > -1 ? 'NONE_COMMA' : 'NONE_DOT';
@@ -52,7 +52,9 @@
                           });
                       }, 
         defaultValue: defaultDelimiters,
-        callApply   : true
+        callApply   : true,
+        globalEvents: 'numberformatchanged latlngformatchanged'
+
     });
 
 
@@ -93,6 +95,7 @@
 
     numeralFormat( 'kilometer', 'km', 1000 );
     numeralFormat( 'nautical',  'nm', 1862 );
+
 
 /*
     ns._setDelimiters = function( thousands, decimal ){

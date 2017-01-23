@@ -53,7 +53,7 @@
                       }, 
         defaultValue: defaultDelimiters,
         callApply   : true,
-        globalEvents: 'numberformatchanged latlngformatchanged'
+        globalEvents: 'numberformatchanged'
 
     });
 

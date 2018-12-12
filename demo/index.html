@@ -9,11 +9,11 @@
 	<meta name='copyright' content='FCOO'>
 	<meta name='owner' content='FCOO'>
 
-<!-- 
-    <link  href="bower_components.css" rel="stylesheet">	
-    <link  href="../src/fcoo-number.css" rel="stylesheet">	
+<!--
+    <link  href="bower_components.css" rel="stylesheet">
+    <link  href="../src/fcoo-number.css" rel="stylesheet">
  -->
- 
+
 </head>
 
 <body>
@@ -27,7 +27,7 @@
             var p = $('<p></p>').appendTo( 'body' );
             if (text)
               p.html( text + '<br>' );
-            p.append('<code>myNumeral.format("' + format + '") => "' + myNumeral.format(format) + '"</code>'); 
+            p.append('<code>myNumeral.format("' + format + '") => "' + myNumeral.format(format) + '"</code>');
         }
 
 		function display(functionStr){
@@ -36,7 +36,7 @@
 				funcReturnAsString = funcReturn;
 			if (typeof funcReturn == 'string')
 			  funcReturnAsString = '"' + funcReturnAsString + '"';
-            
+
             $('body').append('<p><code>'+functionStr+' => ' + funcReturnAsString + '</code></p>');
         }
 
@@ -68,17 +68,26 @@
         writeFormat('0,0.0km', 'In km');
 
         display('numeral("12km").value()');
-        
+
         writeFormat('0,0.0nm', 'In nm');
 
         display('numeral("12nm").value()');
-        
+
         writeText('myNumeral = numeral(12345678901234.123);');
         myNumeral = numeral(12345678901234.123);
 
         writeFormat('0.0000 a', 'k/m/t with 4 decimal');
 
         writeFormat('0,0.0000a', 'Thousand separator and 4 decimals');
+
+        writeText('**** numberFixedWidth ****');
+
+        $.each([0, 0.129, 1, 1.002, 1.2, 12.51, 120.91, -500.99, 999.11, 1000, 1001.99, 12345.678], function(index, value){
+            writeText(
+                value +
+                ' : numberFixedWidth('+value+', 4, false/true)="'+window.fcoo.number.numberFixedWidth(value, 4) + '"/"'+window.fcoo.number.numberFixedWidth(value, 4, true)+'"');
+        });
+
 
     </script>
 </body>

@@ -4,7 +4,8 @@
 
 ## Description
 Using [Numeral.js] to defines different formats for numbers and load and save selected formats
-Adds two new formats for distances: `km` and `nm`
+
+Add methods `window.fcoo.number.numberFixedWidth( value, nrOfDigits, removeTrailingZeros )`
 
 ## Installation
 ### bower
@@ -15,23 +16,28 @@ http://FCOO.github.io/fcoo-number/demo/
 
 ## Usage
 
+### `window.fcoo.number.numberFixedWidth( value, nrOfDigits, removeTrailingZeros )`
+
+Convert value to a string where the number of digits in the string is <= `nrOfDigits` unless `value >= power(10, nrOfDigits+1)`
+
+Example with `nrOfDigits == 4`:
+
+
+`1.2345  => "1.234"`
+`12.345  => "12.34"`
+`123.45  => "123.4"`
+`1234.5  => "1235"`
+`12345   => "12345"`
+
+`removeTrailingZeros = false: 1.2 => "1.200"`
+`removeTrailingZeros = true : 1.2 => "1.2"`
+
+
+
+
+### Format
+
 See [Numeral.js] on how to format numbers
-
-Two new formats are added:
-### `km`
-Convert distances in meter to kilometer 
-
-    numeral(1234.123).format("0,0.0km") //"1.2km"
-    numeral("12km").value(); //12000
-
-### `nm`
-Convert distances in meter to nautical miles
-
-    numeral(1234.123).format("0,0.0 nm") //"0.663 nm"
-    numeral("12nm").value(); //22344
-
-
-## Format
 
 The following 6 formats for delimiters are supported
 

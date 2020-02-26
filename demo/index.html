@@ -9,10 +9,10 @@
 	<meta name='copyright' content='FCOO'>
 	<meta name='owner' content='FCOO'>
 
-<!--
+     <link  href="css/all.css" rel="stylesheet">
     <link  href="bower_components.css" rel="stylesheet">
-    <link  href="../src/fcoo-number.css" rel="stylesheet">
- -->
+    <!-- <link  href="../src/fcoo-number.css" rel="stylesheet"> -->
+    <link  href="css/fontawesome-all.css" rel="stylesheet">
 
 </head>
 
@@ -20,6 +20,12 @@
 	<script src="bower_components.js"></script>
 	<script src="../src/fcoo-number.js"></script>
 	<script>
+        window.bsIsTouch = false;
+        window.bsIsTouch = (window.location.search =='?touch');
+        i18next.init();
+        i18next.changeLanguage('en');
+        i18next.options.fallbackLng = i18next.language == 'da' ? 'en' : 'da';
+
         function writeText( text ){
             $('<p><code>'+text+'</code></p>').appendTo( 'body' );
         }
@@ -41,9 +47,9 @@
         }
 
 
-        writeText("window.fcoo.settings.set('number', 'SPACE_COMMA' );");
+        writeText("window.fcoo.globalSetting.set({number: 'SPACE_COMMA'} );");
         window.fcoo.events.on('latlngformatchanged', function(id, value){ alert(id+' '+value); });
-        window.fcoo.settings.set('number', 'SPACE_COMMA' );
+        window.fcoo.globalSetting.set({number: 'SPACE_COMMA'});
 
 
         writeText('var myNumeral = numeral(1000);');
@@ -86,6 +92,11 @@
             writeText(
                 value +
                 ' : numberFixedWidth('+value+', 4, false/true)="'+window.fcoo.number.numberFixedWidth(value, 4) + '"/"'+window.fcoo.number.numberFixedWidth(value, 4, true)+'"');
+        });
+
+        $('body').on('contextmenu', function(){
+            fcoo.globalSetting.edit(window.fcoo.events.NUMBERFORMATCHANGED);
+            return false;
         });
 
 

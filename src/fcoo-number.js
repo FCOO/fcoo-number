@@ -19,14 +19,13 @@
     //Options for the 6 posible formats. Placed in seperate namespace
 
     var NumeralJsDelimiters = ns.NumeralJsDelimiters = {
-            NONE_DOT   : { thousands: '',  decimal: '.', example:'1000.123'  },
             NONE_COMMA : { thousands: '',  decimal: ',', example:'1000,123'  },
-
-            SPACE_DOT  : { thousands: ' ', decimal: '.', example:'1 000.123'  },
-            SPACE_COMMA: { thousands: ' ', decimal: ',', example:'1 000,123'  },
-
-            COMMA_DOT  : { thousands: ',', decimal: '.', example:'1,000.123' },
+            SPACE_COMMA: { thousands: ' ', decimal: ',', example:'1 000,123' },
             DOT_COMMA  : { thousands: '.', decimal: ',', example:'1.000,123' },
+
+            NONE_DOT   : { thousands: '',  decimal: '.', example:'1000.123'  },
+            SPACE_DOT  : { thousands: ' ', decimal: '.', example:'1 000.123' },
+            COMMA_DOT  : { thousands: ',', decimal: '.', example:'1,000.123' },
         },
 
         //Determinate the default decimal separator

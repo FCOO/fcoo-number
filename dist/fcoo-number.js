@@ -97,7 +97,8 @@
 
     ns.number.numberFixedWidth = function( value, nrOfDigits, removeTrailingZeros ){
         //Example value = -13.57
-        var sign = value < 0 ? '-' : '';
+        var originalValue = value,
+            sign = value < 0 ? '-' : '';
         value = Math.abs(value);
 
         var digits    = Math.max(0, Math.floor(1 + log10(value)) ),
@@ -119,15 +120,25 @@
         if (removeTrailingZeros)
             result = result.replace(/0+$/gm, "");
 
+        //If result = "0" or "0.0...0" and value != 0 => return "~0" or "~0.0...0"
+        if ((originalValue != 0) && result.match(/^0((.|,)0+)?$/gm))
+            return '~'+result;
+
         return sign + result;
     };
 
 /* test
-//$.each([0, 0.129, 1, 1.002, 1.2, 10, 12.51, 100, 120.91, -500.99, 999.11, 1000, 1001.99, 12345.678], function(index, value){
-$.each([0, 0.1, 1, 10, 100, 1000, 10000, 100000, 1000000], function(index, value){
-    value = value;// + .1;
-    console.log(value,'=>', ns.number.numberFixedWidth(value, 4), ns.number.numberFixedWidth(value, 4, true));
-});
+    setTimeout(function(){
+        window.fcoo.globalSetting.set({number: 'SPACE_DOT'} );
+
+        //$.each([0, 0.129, 1, 1.002, 1.2, 10, 12.51, 100, 120.91, -500.99, 999.11, 1000, 1001.99, 12345.678], function(index, value){
+        $.each([0.0001, 0.001, 0.01, 0, 1, 10, 100, 1000, 10000, 100000, 1000000], function(index, value){
+            value = value;// + .1;
+            console.log(value,'=>', ns.number.numberFixedWidth(value, 2), ns.number.numberFixedWidth(value, 2, true));
+            console.log(-value,'=>', ns.number.numberFixedWidth(-value, 2), ns.number.numberFixedWidth(-value, 2, true));
+        });
+    }, 2000);
+
 //*/
 
 }(jQuery, this, document));

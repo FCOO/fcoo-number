@@ -26,6 +26,8 @@
         i18next.changeLanguage('en');
         i18next.options.fallbackLng = i18next.language == 'da' ? 'en' : 'da';
 
+setTimeout(function(){
+
         function writeText( text ){
             $('<p><code>'+text+'</code></p>').appendTo( 'body' );
         }
@@ -47,8 +49,8 @@
         }
 
 
-        window.fcoo.events.on('latlngformatchanged', function(id, value){ alert(id+' '+value); });
-        window.fcoo.globalSetting.set({number: 'SPACE_COMMA'});
+//HER        window.fcoo.events.on('latlngformatchanged', function(id, value){ alert(id+' '+value); });
+//HER        window.fcoo.globalSetting.set({number: 'SPACE_COMMA'});
 
 
         writeText('var myNumeral = numeral(1000);');
@@ -92,6 +94,7 @@
                 value +
                 ' : numberFixedWidth('+value+', 3, false/true)="'+window.fcoo.number.numberFixedWidth(value, 3) + '" / "'+window.fcoo.number.numberFixedWidth(value, 3, true)+'"');
         });
+}, 500);
 
         $('body').on('contextmenu', function(){
             fcoo.globalSetting.edit(window.fcoo.events.NUMBERFORMATCHANGED);

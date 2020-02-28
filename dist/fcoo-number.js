@@ -31,7 +31,23 @@
         //Determinate the default decimal separator
         n = 1.1,
         s = n.toLocaleString(),
-        defaultDelimiters = s.indexOf(',') > -1 ? 'NONE_COMMA' : 'NONE_DOT';
+        defaultDelimiterId = s.indexOf(',') > -1 ? 'NONE_COMMA' : 'NONE_DOT';
+
+
+    //Using numeral.locale to save the different settings
+    var baseOptions = $.extend({}, window.numeral.locales['en']);
+
+    $.each(NumeralJsDelimiters, function(id, delimiter){
+        window.numeral.register('locale', id,
+            $.extend({}, baseOptions, {
+                delimiters: {
+                    thousands: delimiter.thousands,
+                    decimal  : delimiter.decimal
+                }
+            })
+        );
+    });
+    window.numeral.locale(defaultDelimiterId);
 
     /***********************************************************
     Set up and load number-formats (delimiters) via fcoo.globalSetting
@@ -43,15 +59,9 @@
                           return NumeralJsDelimiters[delimitersId] !== null;
                       },
         applyFunc   : function( delimitersId ){
-                          delimitersId = delimitersId ? delimitersId.toUpperCase() : null;
-                          var delimiters = NumeralJsDelimiters[delimitersId];
-                          if (delimiters)
-                              $.each( window.numeral.locales, function( key, options ){
-                                  options.delimiters.thousands = delimiters.thousands;
-                                  options.delimiters.decimal   = delimiters.decimal;
-                          });
+                          window.numeral.locale(NumeralJsDelimiters[delimitersId] ? delimitersId.toUpperCase() : defaultDelimiterId);
                       },
-        defaultValue: defaultDelimiters,
+        defaultValue: defaultDelimiterId,
         callApply   : true,
     });
 

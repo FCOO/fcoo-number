@@ -63,6 +63,7 @@
                       },
         defaultValue: defaultDelimiterId,
         callApply   : true,
+        globalEvents: ns.events.NUMBERFORMATCHANGED
     });
 
     //Create content for globalSetting modal-form

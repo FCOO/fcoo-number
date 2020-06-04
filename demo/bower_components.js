@@ -67878,9 +67878,6 @@ window.location.hash
         this.modalContent = {};
         //this.modalFooter = {ID}FOOTER for modal-form to edit a part of values from this.data. More than one record in this.data can be edited in one this.modalContent
         this.modalFooter = {};
-
-        if (!this.options.dontSave)
-            this.load();
     }
     ns.SettingGroup = SettingGroup;
 
@@ -68023,7 +68020,7 @@ window.location.hash
         *****************************************************/
 
         /*****************************************************
-        addModalContent(accordionId, content)
+        addModalContent(accordionId, content, footer)
         *****************************************************/
         addModalContent: function(accordionId, content, footer){
             this.modalContent[accordionId] = this.modalContent[accordionId] || [];

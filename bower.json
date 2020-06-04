@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "numeral": "adamwdraper/Numeral-js#^2.0.4",
-    "fcoo-settings": "fcoo/fcoo-settings#^2.3.0"
+    "fcoo-settings": "fcoo/fcoo-settings#latest"
   },
   "devDependencies": {},
   "license": "MIT",

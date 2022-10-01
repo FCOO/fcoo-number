@@ -69,7 +69,7 @@
     //Create content for globalSetting modal-form
     var items = [];
     $.each(NumeralJsDelimiters, function(id, data){
-        items.push({id: id, text: data.example, textClass: 'text-monospace'});
+        items.push({id: id, text: data.example, textClass: 'font-monospace'});
     });
     ns.globalSetting.addModalContent(ns.events.NUMBERFORMATCHANGED, {
         id    : 'number',
